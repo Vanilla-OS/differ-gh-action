@@ -34,7 +34,7 @@ GitHub composite action for [Differ](https://github.com/Vanilla-OS/Differ).
       packages: read
     steps:
       - uses: actions/checkout@v7
-      - uses: FangcatChina/differ-gh-action@main
+      - uses: vanilla-os/differ-gh-action@main
         with:
           image: gnome
           legacy_image: desktop
