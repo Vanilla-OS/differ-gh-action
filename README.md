@@ -12,7 +12,6 @@ GitHub composite action for [Differ](https://github.com/Vanilla-OS/Differ).
 | `differ_user` | yes | — | differ basic auth user |
 | `differ_psw` | yes | — | differ basic auth password |
 | `packages_owner` | no | repository owner | Owner of the container package queried through the GitHub API |
-| `package_list_script` | no | `.github/gen_package_list.sh` | Script printing the package list JSON fragment |
 
 ## Outputs
 
@@ -44,3 +43,7 @@ GitHub composite action for [Differ](https://github.com/Vanilla-OS/Differ).
 ```
 
 The `packages: read` permission is required for the token used to list container package versions.
+
+Before reporting each release the action calls `POST /images/new`, so images do not need to be created in differ beforehand. The image URL is filled with the repository running the workflow; a duplicate `name` may be rejected by differ, which is ignored.
+
+The package list is collected by the `gen_package_list.sh` bundled with this action, so image repositories do not need to ship their own script. It is the same logic as Differ's [`get_packages.sh`](https://github.com/Vanilla-OS/Differ/blob/main/get_packages.sh).
